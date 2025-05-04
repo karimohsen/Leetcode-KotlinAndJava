@@ -1,4 +1,3 @@
-import java.util.*
 // Problem's link : https://leetcode.com/problems/search-insert-position/
 // Since array is sorted , I used binary search 
 public int searchInsert(int[] nums, int target) {
