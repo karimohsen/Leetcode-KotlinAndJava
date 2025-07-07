@@ -1,21 +1,26 @@
-//Problem's solving: https://leetcode.com/problems/climbing-stairs/
+//Problem's solving: https://leetcode.com/problems/valid-palindrome/description/
 /*
-* This problem is really fun, if the input is 1 the output is 1
-* if the input is 2 the output is 2
-* if the input is 3 the output is 3
-* if the input is 4 the output is 5
-* if the input is 5 the output is 8
-* That's a just fibonacci sequence in disguise!!
+* Create two pointers, one in the beginning of the str and the other at the end,move a pointer if it is not an alphanumeric
+* (we want to skip any non-alphanumeric character), if both pointers are pointing at an alphanumeric then they need to match
+* otherwise it is not a palindrome.
 */
-public int climbStairs(int n) {
-	int result = 0;
-	int firstNum = 0;
-	int secondNum = 1;
-	while(n > 0) {
-		result = firstNum + secondNum;
-		firstNum = secondNum;
-		secondNum = result;
-		n--;
+public boolean isPalindrome(String s) {
+	int i = 0;
+	int j = s.length() - 1;
+	while(i < j){
+		char firstChar = s.charAt(i);
+		char secondChar = s.charAt(j);
+		if(!Character.isAlphabetic(firstChar) && !Character.isDigit(firstChar)){
+			i++;
+			continue;
+		} if(!Character.isAlphabetic(secondChar) && !Character.isDigit(secondChar)){
+			j--;
+			continue;
+		} else if(Character.toLowerCase(firstChar) != Character.toLowerCase(secondChar)){
+			return false;
+		}
+		i++;
+		j--;
 	}
-	return result;
+	return true;
 }

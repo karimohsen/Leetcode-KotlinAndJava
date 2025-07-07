@@ -1,26 +1,19 @@
-//Problem's solving: https://leetcode.com/problems/valid-palindrome/description/
+//Problem's solving: https://leetcode.com/problems/single-number/description/
 /*
-* Create two pointers, one in the beginning of the str and the other at the end,move a pointer if it is not an alphanumeric
-* (we want to skip any non-alphanumeric character), if both pointers are pointing at an alphanumeric then they need to match
-* otherwise it is not a palindrome.
+* This is straight forward, I created a map for the number and the count of occurrence, I return
+* the number that has only one occurrence since it is guaranteed.
 */
-fun isPalindrome(s: String): Boolean {
-    var i = 0
-    var j = s.length - 1
-    while (i < j){
-        val firstChar = s[i]
-        val secondChar = s[j]
-        if(!firstChar.isLetterOrDigit()){
-            i++
-            continue
-        } else if(!secondChar.isLetterOrDigit()){
-            j--
-            continue
-        } else if (firstChar.lowercase() != secondChar.lowercase()){
-            return false
-        }
-        i++
-        j--
-    }
-    return true
+fun singleNumber(nums: IntArray): Int {
+    /*
+    The XOR operation has two useful properties:
+
+    ( x \oplus x = 0 ): XORing a number with itself results in 0.
+    ( x \oplus 0 = x ): XORing a number with 0 keeps the number unchanged.
+    By XORing all elements in the array, the elements that appear twice will cancel each other out, leaving only the single element that appears once.
+     */
+    var result = 0
+    for (number in nums)
+        result = result xor number
+
+    return result
 }

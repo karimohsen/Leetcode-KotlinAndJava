@@ -1,26 +1,18 @@
-//Problem's solving: https://leetcode.com/problems/valid-palindrome/description/
+//Problem's solving: https://leetcode.com/problems/single-number/description/
 /*
-* Create two pointers, one in the beginning of the str and the other at the end,move a pointer if it is not an alphanumeric
-* (we want to skip any non-alphanumeric character), if both pointers are pointing at an alphanumeric then they need to match
-* otherwise it is not a palindrome.
+* This is straight forward, I created a map for the number and the count of occurrence, I return
+* the number that has only one occurrence since it is guaranteed.
 */
-public boolean isPalindrome(String s) {
-	int i = 0;
-	int j = s.length() - 1;
-	while(i < j){
-		char firstChar = s.charAt(i);
-		char secondChar = s.charAt(j);
-		if(!Character.isAlphabetic(firstChar) && !Character.isDigit(firstChar)){
-			i++;
-			continue;
-		} if(!Character.isAlphabetic(secondChar) && !Character.isDigit(secondChar)){
-			j--;
-			continue;
-		} else if(Character.toLowerCase(firstChar) != Character.toLowerCase(secondChar)){
-			return false;
-		}
-		i++;
-		j--;
+public int singleNumber(int[] nums) {
+	final Map<Integer, Integer> map = new HashMap<>();
+	for (int num : nums) {
+		map.put(num, map.getOrDefault(num, 0) + 1);
 	}
-	return true;
+
+	return map.entrySet()
+			.stream()
+			.filter(entry -> entry.getValue() == 1)
+			.findFirst()
+			.get()
+			.getKey();
 }
