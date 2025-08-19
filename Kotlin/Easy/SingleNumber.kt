@@ -1,7 +1,8 @@
 //Problem's solving: https://leetcode.com/problems/single-number/description/
 /*
-* This is straight forward, I created a map for the number and the count of occurrence, I return
-* the number that has only one occurrence since it is guaranteed.
+* There were two solutions that came to mind when trying to solve this assignment:
+* 1- To create a map for the number and the count of occurrence, and I return the number that has only one occurrence since it is guaranteed.
+* 2- To use xor
 */
 fun singleNumber(nums: IntArray): Int {
     /*
